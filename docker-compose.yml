@@ -1,0 +1,35 @@
+version: '3.8'
+services:
+  # 1. Banco de Dados PostgreSQL (evo-postgres)
+  evo-postgres:
+    image: postgres:15
+    container_name: evo-postgres
+    restart: always
+    ports:
+      - "5432:5432"
+    environment:
+      # MUITO IMPORTANTE: Defina e use estas credenciais
+      POSTGRES_USER: user_evolution
+      POSTGRES_PASSWORD: whats64
+      POSTGRES_DB: whatsapp_db
+    volumes:
+      # Garante que os dados não sejam perdidos ao recriar o container
+      - postgres-data:/var/lib/postgresql/data
+
+  # 2. Servidor de Cache Redis (evo-redis)
+  evo-redis:
+    image: redis:7
+    container_name: evo-redis
+    restart: always
+    ports:
+      - "6379:6379"
+
+  # 3. SERVIÇO DE TESTE: Nginx (Servidor Web Simples)
+  nginx-test:
+    image: nginx:latest
+    container_name: nginx-test
+    restart: always
+    ports:
+      - "8080:80" # Mapeia a porta 8080 local para a porta 80 do Nginx
+volumes:
+  postgres-data:

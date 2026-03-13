@@ -1,0 +1,15 @@
+{
+  "name": "whatsapp-server-backend",
+  "version": "1.0.0",
+  "description": "Servidor de API WhatsApp para integração Mocha",
+  "main": "server.cjs",
+  "scripts": {
+    "start": "node server.cjs"
+  },
+  "dependencies": {
+    "express": "^4.18.2",
+    "whatsapp-web.js": "^1.23.0",
+    "qrcode-terminal": "^0.12.0",
+    "node-fetch": "^3.3.2" 
+  }
+}
